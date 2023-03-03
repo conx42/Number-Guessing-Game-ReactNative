@@ -14,7 +14,7 @@ export default function PrimaryButton({ children }) {
             : style.buttonInnerContainer
         }
         onPress={presshandler}
-        android_ripple={{ color: "#540264" }}
+        android_ripple={{ color: "#5501c4" }}
       >
         <Text style={style.buttonText}>{children}</Text>
       </Pressable>
