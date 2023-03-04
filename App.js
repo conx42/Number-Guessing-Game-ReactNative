@@ -1,18 +1,30 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
-import StartGameScreen from "./screens/StartGameScreen";
+import { GameOverScreen } from "./screens/GameOverScreen";
 import { GameScreen } from "./screens/GameScreen";
+import StartGameScreen from "./screens/StartGameScreen";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState(undefined);
+  const [gameIsOver, setGameIsOver] = useState(true);
   function pickedNumberHandler(pickedNuber) {
     setUserNumber(pickedNuber);
+    setGameIsOver(false);
+  }
+  function gameOverHandler() {
+    setGameIsOver(true);
   }
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
   if (userNumber) {
-    screen = <GameScreen />;
+    screen = (
+      <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
+    );
   }
+  if (gameIsOver && userNumber) {
+    screen = <GameOverScreen />;
+  }
+
   return (
     <LinearGradient
       colors={["#0942bb", "#03bcd4", "#00ffd5"]}
@@ -24,7 +36,8 @@ export default function App() {
         style={styles.rootScreen}
         imageStyle={styles.backgroundImage}
       >
-        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>{/**When we use style in safeAreaView then we ensure that [All the available space - the area that is reserved for the notch] which will be taken care-of automatically is made available for the inner content */}
+        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        {/**When we use style in safeAreaView then we ensure that [All the available space - the area that is reserved for the notch] which will be taken care-of automatically is made available for the inner content */}
       </ImageBackground>
     </LinearGradient>
   );
