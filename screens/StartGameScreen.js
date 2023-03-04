@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Alert, StyleSheet, TextInput, View } from "react-native";
+import Card from "../components/ui/Card";
+import { InstructionSetComponent } from "../components/ui/InstructionSetComponent";
 import PrimaryButton from "../components/ui/PrimaryButton";
+import { Title } from "../components/ui/Title";
 import Colors from "../constants/colors";
 
 export default function StartGameScreen({ onPickNumber }) {
@@ -22,45 +25,43 @@ export default function StartGameScreen({ onPickNumber }) {
     onPickNumber(chosenNumber);
   }
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.numberInput}
-        maxLength={2}
-        keyboardType="number-pad"
-        autoCapitalize="none"
-        autoCorrect={false}
-        onChangeText={NumberInputHandler}
-        value={enteredNumber}
-      />
-      <View style={styles.buttonsContainer}>
-        <View style={styles.buttonContainer}>
-          <PrimaryButton _onPress={resetInputHandler}>Reset</PrimaryButton>
+    <View style={styles.rootContainer}>
+      <Title>Guess My Number</Title>
+      <Card>
+        <InstructionSetComponent>Enter a Number</InstructionSetComponent>
+        <TextInput
+          style={styles.numberInput}
+          maxLength={2}
+          keyboardType="number-pad"
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={NumberInputHandler}
+          value={enteredNumber}
+        />
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton _onPress={resetInputHandler}>Reset</PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton _onPress={confirmInputHandler}>
+              Confirm
+            </PrimaryButton>
+          </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <PrimaryButton _onPress={confirmInputHandler}>Confirm</PrimaryButton>
-        </View>
-      </View>
+      </Card>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    alignItems: "center",
-    // flex: 1,
+  rootContainer: {
+    flex: 1,
     marginTop: 100,
-    marginHorizontal: 24,
-    padding: 16,
-    backgroundColor: Colors.primary800,
-    borderRadius: 8,
-    // Adding shadow
-    //-->for android
-    elevation: 12, //Android only property
-    //-->for IOS
-    shadowColor: "black", // IOS only property
-    shadowOffset: { width: 0, height: 2 }, // IOS only property, in pixel
-    shadowRadius: 6, // IOS only property, in pixel
-    shadowOpacity: 0.25, // IOS only property, in pixel
+    alignItems: 'center'
+  },
+  instructionText:{
+    color: Colors.accent500,
+    fontSize: 24,
   },
   numberInput: {
     height: 50,
@@ -70,8 +71,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     color: Colors.accent600,
     marginVertical: 8,
-    fontWeight: "bold",
-    textAlign: "center",
+    fontFamily: 'Fira-Medium',
+    fontWeight: '900'
   },
   buttonsContainer: {
     flexDirection: "row",

@@ -1,3 +1,4 @@
+import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
@@ -8,6 +9,18 @@ import StartGameScreen from "./screens/StartGameScreen";
 export default function App() {
   const [userNumber, setUserNumber] = useState(undefined);
   const [gameIsOver, setGameIsOver] = useState(true);
+  /**
+   * useFonts - Returns an array. Where the first element we can extract by Array destructuring
+   */
+  const [fontsLoaded] = useFonts({
+    "Pacifico": require("./assets/fonts/Pacifico.ttf"),
+    "lilex-light": require("./assets/fonts/Lilex-Light.otf"),
+    "Fira-Medium": require("./assets/fonts/Fira-Code-Medium.ttf"),
+  });
+  if (!fontsLoaded) {
+   
+  }
+
   function pickedNumberHandler(pickedNuber) {
     setUserNumber(pickedNuber);
     setGameIsOver(false);

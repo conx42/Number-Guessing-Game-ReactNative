@@ -1,6 +1,9 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import { NumberContainer } from "../components/game/NumberContainer";
+import Card from "../components/ui/Card";
+import { InstructionSetComponent } from "../components/ui/InstructionSetComponent";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import { Title } from "../components/ui/Title";
 
@@ -53,20 +56,26 @@ export const GameScreen = ({ userNumber, onGameOver }) => {
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <Text>Higher or lower?</Text>
-        <View>
+      <Card>
+        <InstructionSetComponent style={styles.instructionSet}>
+          Higher or lower?
+        </InstructionSetComponent>
+        <View style={{ flexDirection: "row" }}>
           {/**
            * .bind() => This allows us to preconfigure the parameter value That will be used in a future function execution
            */}
-          <PrimaryButton _onPress={nextGuessHandler.bind(this, "lower")}>
-            -
-          </PrimaryButton>
-          <PrimaryButton _onPress={nextGuessHandler.bind(this, "greater")}>
-            +
-          </PrimaryButton>
+          <View style={{ flex: 1 }}>
+            <PrimaryButton _onPress={nextGuessHandler.bind(this, "lower")}>
+              <Ionicons name="md-remove" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+          <View style={{ flex: 1 }}>
+            <PrimaryButton _onPress={nextGuessHandler.bind(this, "greater")}>
+              <Ionicons name="md-add" size={24} color="white" />
+            </PrimaryButton>
+          </View>
         </View>
-      </View>
+      </Card>
       <View>
         <Text>LOG Rounds</Text>
       </View>
@@ -78,6 +87,9 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 24,
+  },
+  instructionSet: {
+    marginBottom: 12,
   },
   _title: {
     fontSize: 18,
