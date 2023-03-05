@@ -7,7 +7,7 @@ export const Title = ({children}) => {
 };
 const styles = StyleSheet.create({
     _title:{
-      fontFamily: 'Pacifico',
+      // fontFamily: 'Pacifico',
       fontSize: 30,
       // fontWeight: 'bold',
       color: 'cyan',

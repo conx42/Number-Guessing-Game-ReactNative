@@ -28,6 +28,16 @@ export const GameScreen = ({ userNumber, onGameOver }) => {
     }
   }, [currentGuess, userNumber, onGameOver]);
 
+
+  //04/29-Adding Logic to (Re-)start Games/4:58
+  useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
+  }, [])
+  
+
+
+
   function nextGuessHandler(direction) {
     if (
       (direction === "lower" && currentGuess < userNumber) ||

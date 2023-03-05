@@ -7,6 +7,14 @@ import { Title } from "../components/ui/Title";
 import Colors from "../constants/colors";
 
 export default function StartGameScreen({ onPickNumber }) {
+  /*  --My-Code--        Starts  */
+  // const [fontsLoaded] = useFonts({
+  //   // "Pacifico": require("./assets/fonts/Pacifico.ttf"),
+  //   "lilex-light": require("../assets/fonts/Lilex-Light.otf"),
+  //   // "Fira-Medium": require("./assets/fonts/Fira-Code-Medium.ttf"),
+  // });
+  
+  /* Ends */
   const [enteredNumber, setEnteredNumber] = useState("");
   function NumberInputHandler(enteredText) {
     setEnteredNumber(enteredText);
@@ -71,7 +79,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     color: Colors.accent600,
     marginVertical: 8,
-    fontFamily: 'Fira-Medium',
+    // fontFamily: 'Pacifico',
     fontWeight: '900'
   },
   buttonsContainer: {

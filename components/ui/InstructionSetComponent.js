@@ -6,7 +6,7 @@ export const InstructionSetComponent = ({ children, style }) => {
 };
 const styles = StyleSheet.create({
   InstructionSet: {
-    fontFamily: "lilex-light",
+    // fontFamily: "Pacifico",
     color: Colors.accent500,
     fontSize: 24,
   },
